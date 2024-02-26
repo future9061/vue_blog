@@ -1,8 +1,15 @@
-//앱을 생성하고 관리
 
 import { createApp } from 'vue'
-import root from "./app"
+import { createPinia } from 'pinia'
+import App from './App.vue'
+import router from './router'
 
-const app = createApp(root)
 
-app.mount("#app")
+const app = createApp(App)
+
+
+
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')
