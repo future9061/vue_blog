@@ -1,5 +1,7 @@
-<template></templatete>
+<template>
+  <h2>main</h2>
+</template>
 
-  <script></script>
-  
-  <style></style>
+<script setup></script>
+
+<style></style>
