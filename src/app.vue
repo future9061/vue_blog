@@ -7,7 +7,7 @@
 
 <script setup>
 import SiteHeader from './components/headers/SiteHeader.vue'
-import SiteMain from './components/SiteMain.vue'
+import SiteMain from './components/main/SiteMain.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import Loading from '@/components/Loading.vue'
 import { onMounted, ref } from 'vue'
