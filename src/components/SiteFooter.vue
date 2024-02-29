@@ -1,11 +1,7 @@
 <template>
-  <h2>Footer</h2>
+  <footer>Footer</footer>
 </template>
 
-<script>
-export default {
-  name: "SiteFooter",
-};
-</script>
+<script setup></script>
 
 <style></style>
