@@ -1,7 +1,7 @@
 <template>
-  <SiteHeader />
+  <SiteHeader @emit="backLists" />
   <Loading v-if="showLoading" />
-  <SiteMain />
+  <SiteMain :name="name" />
   <SiteFooter />
 </template>
 
@@ -10,6 +10,7 @@ import SiteHeader from './components/headers/SiteHeader.vue'
 import SiteMain from './components/main/SiteMain.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import Loading from '@/components/Loading.vue'
+
 import { onMounted, ref } from 'vue'
 
 const showLoading = ref(true)
@@ -17,6 +18,12 @@ const showLoading = ref(true)
 onMounted(() => {
   showLoading.value = false
 })
+
+const name = ref('List')
+
+const backLists = () => {
+  name.value = 'List'
+}
 </script>
 
 <style>
@@ -30,6 +37,7 @@ body {
   margin: 0;
   padding: o;
 }
+
 li {
   list-style: none;
 }

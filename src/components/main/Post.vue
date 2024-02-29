@@ -6,10 +6,15 @@
 import { NotionRenderer, getPageBlocks } from 'vue-notion'
 import { ref } from 'vue'
 
+const props = defineProps({
+  required: true,
+  id: String
+})
+
 const blockMap = ref(null)
 
 async function create() {
-  blockMap.value = await getPageBlocks('c333c89395ef48b190af92d71da8a3b0')
+  blockMap.value = await getPageBlocks(props.id)
 }
 
 create()
@@ -17,4 +22,8 @@ create()
 
 <style>
 @import 'vue-notion/src/styles.css';
+
+.notion-page {
+  border: 1px solid red;
+}
 </style>
