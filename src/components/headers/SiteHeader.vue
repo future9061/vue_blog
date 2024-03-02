@@ -6,7 +6,9 @@
 
     <Search ref="search" />
     <nav>
-      <a v-for="(menu, index) in menus" :key="index" @click="$emit('emit')">{{ menu }}</a>
+      <a v-for="(menu, index) in menus" :key="index" @click="$emit('change-category', menu)">{{
+        menu
+      }}</a>
     </nav>
   </header>
 </template>
@@ -26,8 +28,6 @@ onMounted(() => {
     document.querySelector('header > div ').classList.remove('hover')
   }
 })
-
-const emit = defineEmits(['emit'])
 </script>
 
 <style scoped>
