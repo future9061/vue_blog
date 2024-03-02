@@ -1,15 +1,16 @@
 <template>
   <main>
-    <component
-      :is="comp[target]"
-      :id="target === 'Post' ? id : null"
+    <List
+      v-if="name === 'List'"
+      :category="category"
       @change-id="
         (newId) => {
           id = newId
-          target = 'Post'
+          $emit('change-id')
         }
       "
-    />{{ console.log(target) }}
+    />
+    <Post v-if="name === 'Post'" :id="id" />
   </main>
 </template>
 
@@ -21,13 +22,20 @@ const Post = defineAsyncComponent(() => import('@/components/main/Post.vue'))
 
 const id = ref('c333c89395ef48b190af92d71da8a3b0')
 
-const props = defineProps({
-  required: true,
-  name: Object
+defineProps({
+  name: {
+    type: String,
+    required: true,
+    validator(value) {
+      return ['List', 'Post'].includes(value)
+    }
+  },
+  category: {
+    type: String
+  }
 })
 
 const comp = { List, Post }
-const target = ref(props.name)
 </script>
 
 <style>

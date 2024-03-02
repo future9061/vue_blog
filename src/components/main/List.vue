@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(list, index) in lists" :key="index" @click="$emit('change-id', list.id)">
+    <li v-for="list of filteredList" :key="list.id" @click="$emit('change-id', list.id)">
       <span>{{ list.title }}</span>
       <span :class="list.category">{{ list.category }}</span>
     </li>
@@ -9,12 +9,28 @@
 
 <script setup>
 import { getPageTable } from 'vue-notion'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const lists = ref([])
 
 getPageTable('f8ad3be41d7a437fba08a06f4e83f296').then((value) => {
   lists.value = value
+})
+
+const props = defineProps({ category: { type: String } })
+
+const filteredList = computed(() => {
+  if (props.category === '') {
+    return lists.value
+  } else {
+    const result = []
+    for (const item of lists.value) {
+      if (item.category == props.category.toLocaleLowerCase()) {
+        result.push(item)
+      }
+    }
+    return result
+  }
 })
 </script>
 

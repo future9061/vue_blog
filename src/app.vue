@@ -1,7 +1,7 @@
 <template>
-  <SiteHeader @emit="backLists" />
+  <SiteHeader @change-category="changeCategory" />
   <Loading v-if="showLoading" />
-  <SiteMain :name="name" />
+  <SiteMain @change-id="name = 'Post'" :name="name" :category="category" />
   <SiteFooter />
 </template>
 
@@ -20,9 +20,11 @@ onMounted(() => {
 })
 
 const name = ref('List')
+const category = ref('')
 
-const backLists = () => {
+const changeCategory = (newCate) => {
   name.value = 'List'
+  category.value = newCate
 }
 </script>
 
