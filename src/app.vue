@@ -21,6 +21,7 @@ onMounted(() => {
 
 const name = ref('List')
 const category = ref('')
+const title = ref('')
 
 provide('name', {
   name,
@@ -35,6 +36,14 @@ provide('category', {
     category.value = newCate
   }
 })
+
+provide('title', {
+  title,
+  updateTitle(newTitle) {
+    title.value = newTitle
+  }
+})
+console.log(title)
 </script>
 
 <style>
