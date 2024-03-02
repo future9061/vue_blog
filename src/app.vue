@@ -1,7 +1,7 @@
 <template>
-  <SiteHeader @change-category="changeCategory" />
+  <SiteHeader />
   <Loading v-if="showLoading" />
-  <SiteMain @change-id="name = 'Post'" :name="name" :category="category" />
+  <SiteMain />
   <SiteFooter />
 </template>
 
@@ -11,7 +11,7 @@ import SiteMain from './components/main/SiteMain.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import Loading from '@/components/Loading.vue'
 
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, provide } from 'vue'
 
 const showLoading = ref(true)
 
@@ -22,10 +22,19 @@ onMounted(() => {
 const name = ref('List')
 const category = ref('')
 
-const changeCategory = (newCate) => {
-  name.value = 'List'
-  category.value = newCate
-}
+provide('name', {
+  name,
+  updateName(newName) {
+    name.value = newName
+  }
+})
+
+provide('category', {
+  category,
+  updateCategory(newCate) {
+    category.value = newCate
+  }
+})
 </script>
 
 <style>
@@ -37,7 +46,7 @@ body {
 }
 * {
   margin: 0;
-  padding: o;
+  padding: 0;
 }
 
 li {
