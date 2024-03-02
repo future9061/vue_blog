@@ -25,17 +25,9 @@ const { updateName } = inject('name')
 const { category } = inject('category')
 
 const filteredList = computed(() => {
-  if (category.value === '') {
-    return lists.value
-  } else {
-    const result = []
-    for (const item of lists.value) {
-      if (item.category == category.value.toLocaleLowerCase()) {
-        result.push(item)
-      }
-    }
-    return result
-  }
+  return lists.value.filter((list) => {
+    return list.category === category.value.toLowerCase() || category.value === ''
+  })
 })
 </script>
 

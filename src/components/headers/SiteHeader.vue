@@ -1,10 +1,12 @@
 <template>
   <header class="wrap">
-    <div>
+    <div class="logo">
       <img ref="logo" src="@/assets/logo.png" alt="logo" />
     </div>
 
-    <Search ref="search" class="my-search" @input="console.log($event.target.value)" />
+    <Search v-model:tag.lazy="tag" />
+    <h1>태그:{{ tag }}</h1>
+
     <nav>
       <a
         v-for="(menu, index) in menus"
@@ -19,6 +21,7 @@
 <script setup>
 import { inject, onMounted, ref } from 'vue'
 import Search from './Search.vue'
+
 const menus = ['Vue', 'Nuxt', 'AWS']
 
 const { updateName } = inject('name')
@@ -45,7 +48,7 @@ header {
   gap: 20px;
 }
 
-header > div {
+header > .logo {
   width: 20vh;
   height: 20vh;
   border-radius: 50%;
@@ -55,11 +58,11 @@ header > div {
   cursor: pointer;
 }
 
-header > div:hover {
+header > .logo:hover {
   transform: scale(1.2);
 }
 
-header > div > img {
+header > .logo > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
