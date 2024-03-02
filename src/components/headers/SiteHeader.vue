@@ -4,7 +4,7 @@
       <img ref="logo" src="@/assets/logo.png" alt="logo" />
     </div>
 
-    <Search ref="search" />
+    <Search ref="search" class="my-search" @input="console.log($event.target.value)" />
     <nav>
       <a
         v-for="(menu, index) in menus"
