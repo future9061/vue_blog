@@ -6,12 +6,9 @@
 import { NotionRenderer, getPageBlocks } from 'vue-notion'
 import { ref } from 'vue'
 
-const props = defineProps({
-  required: true,
-  id: String
-})
-
 const blockMap = ref(null)
+
+const props = defineProps({ id: { type: String } })
 
 async function create() {
   blockMap.value = await getPageBlocks(props.id)

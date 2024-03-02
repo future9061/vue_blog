@@ -6,17 +6,23 @@
 
     <Search ref="search" />
     <nav>
-      <a v-for="(menu, index) in menus" :key="index" @click="$emit('change-category', menu)">{{
-        menu
-      }}</a>
+      <a
+        v-for="(menu, index) in menus"
+        :key="index"
+        @click="updateName('List'), updateCategory(menu)"
+        >{{ menu }}</a
+      >
     </nav>
   </header>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import Search from './Search.vue'
 const menus = ['Vue', 'Nuxt', 'AWS']
+
+const { updateName } = inject('name')
+const { updateCategory } = inject('category')
 
 const logo = ref(null)
 
