@@ -26,6 +26,7 @@ const menus = ['Vue', 'Nuxt', 'AWS']
 
 const { updateName } = inject('name')
 const { updateCategory } = inject('category')
+const { tag } = inject('tag')
 
 const logo = ref(null)
 
